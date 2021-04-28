@@ -1,4 +1,4 @@
-var width = 320, 
+var width = 500, 
 	height = 500,
 	gLoop,
 	points = 0,
@@ -52,7 +52,7 @@ var player = new (function(){
 	var that = this;
 	that.image = new Image();
 
-	that.image.src = "angel.png"
+	that.image.src = "wh3.png"
 	that.width = 65;
 	that.height = 95;
 	that.frames = 1;
@@ -184,7 +184,6 @@ document.onmousemove = function(e){
 		platforms = [],
 		platformWidth = 70,
 		platformHeight = 20;
-		 
 	var Platform = function(x, y, type){
 		var that=this;
 		
@@ -196,7 +195,7 @@ document.onmousemove = function(e){
 		
 		if (type === 1) {
 			that.firstColor = '#AADD00';
-			that.secondColor = '#698B22';
+			that.secondColor = '#698B22';                
 			that.onCollide = function(){
 				player.fallStop();
 				player.jumpSpeed = 50;
@@ -218,6 +217,7 @@ document.onmousemove = function(e){
 			var gradient = ctx.createRadialGradient(that.x + (platformWidth/2), that.y + (platformHeight/2), 5, that.x + (platformWidth/2), that.y + (platformHeight/2), 45);
 			gradient.addColorStop(0, that.firstColor);
 			gradient.addColorStop(1, that.secondColor);
+			
 			ctx.fillStyle = gradient;
 			ctx.fillRect(that.x, that.y, platformWidth, platformHeight);
 		};
@@ -254,9 +254,8 @@ document.onmousemove = function(e){
 	}
 
 var GameLoop = function(){
-	clear();
-	//MoveCircles(5);
-	DrawCircles();
+	clear();//화면의 사이즈와 배경
+	DrawCircles();//배경에 동그라미가 계속 움직이게 해주는것
 
 	if (player.isJumping) player.checkJump();
 	if (player.isFalling) player.checkFall();
@@ -282,6 +281,7 @@ var GameLoop = function(){
 	
 	if (state)
 		gLoop = setTimeout(GameLoop, 1000 / 50);
+	
 }
 
 	var GameOver = function(){
@@ -297,5 +297,6 @@ var GameLoop = function(){
 		}, 100);
 		
 	};
-	
+
 GameLoop();
+

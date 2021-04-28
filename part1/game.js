@@ -1,4 +1,4 @@
-var width = 320, 
+var width = 330, 
 	height = 500,
 	gLoop,
 	c = document.getElementById('c'), 

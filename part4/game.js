@@ -157,12 +157,13 @@ document.onmousemove = function(e){
 		platforms = [],
 		platformWidth = 70,
 		platformHeight = 20;
-		 
+		
 	var Platform = function(x, y, type){
 		var that=this;
 		
 		that.firstColor = '#FF8C00';
 		that.secondColor = '#EEEE00';
+		that.thirdColor = '#AAAA00';
 		that.onCollide = function(){
 			player.fallStop();
 		};

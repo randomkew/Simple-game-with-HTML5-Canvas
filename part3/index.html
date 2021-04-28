@@ -19,10 +19,17 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
+		
 	</style>
 </head>
 <body>
+	<audio data-key="65" src="a.wav"></audio>
 <canvas id='c'></canvas>
-<script src="game.js"></script>
+<script src="game.js">
+</script>
+<script>
+	window.addEventListener('keydown',function(e) {const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); if(!audio) return; audio.play();});
+</script>
+	
 </body>
 </html>

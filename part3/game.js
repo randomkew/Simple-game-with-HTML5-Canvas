@@ -1,4 +1,4 @@
-var width = 320, 
+var width = 1000, 
 	height = 500,
 	gLoop,
 	c = document.getElementById('c'), 
@@ -50,7 +50,7 @@ var player = new (function(){
 	var that = this;
 	that.image = new Image();
 
-	that.image.src = "angel.png"
+	that.image.src = "wh3.png"
 	that.width = 65;
 	that.height = 95;
 	that.frames = 1;

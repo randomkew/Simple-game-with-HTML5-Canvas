@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HTML5 Canvas</title>
+</head>
+<body>
+<canvas id="draw" width="800" height="800"></canvas>
+
+<style>
+html, body {
+    margin: 0;
+}
+</style>
+<script>
+const canvas = document.querySelector('#draw');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+ctx.strokeStyle = '#BADA55';
+ctx.lineJoin = 'round';
+ctx.lineCap = 'round';
+ctx.lineWidth = 100;
+
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+let hue = 0;
+let direction = true;
+    function draw(e) {
+    if (!isDrawing) return;
+    console.log(e);
+    ctx.strokeStyle=`hsl(${hue},100%,80%)`;
+    ctx.beginPath();//시작하는곳
+    ctx.moveTo(lastX,lastY);//지나가는 방향
+    ctx.lineTo(e.offsetX,e.offsetY);
+    ctx.stroke();
+    [lastX,lastY]=[e.offsetX,e.offsetY];
+    //lastX=e.offsetX; 위랑 같은거
+    //lastY=e.offsetY;
+    hue+=0.5;
+    if(hue>=360) {
+        hue=0;
+    }
+    if(ctx.lineWidth>=150||ctx.lineWidth<=10) {
+        direction=!direction;
+    }
+    if(direction) {
+        ctx.lineWidth++;
+    }
+    else{
+        ctx.lineWidth--;
+    }
+    }
+    canvas.addEventListener('mousemove',draw);
+    canvas.addEventListener('mousedown',(e)=>{
+    isDrawing=true;
+    [lastX,lastY]=[e.offsetX,e.offsetY];
+    });//마우스 버튼눌렀을때 처리
+
+    canvas.addEventListener('mouseup',()=>isDrawing=false);//down눌렀을떄 up은 떌떄
+    canvas.addEventListener('mouseout',()=>isDrawing=false);//마우스가 객체를 벗어났을떄 이벤트처리
+</script>
+</body>
+</html>
