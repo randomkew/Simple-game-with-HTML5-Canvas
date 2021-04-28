@@ -1,4 +1,4 @@
-var width = 500, 
+var width = 330, 
 	height = 500,
 	gLoop,
 	points = 0,
